@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holiday Packages - Flyon Holidays</title>
+    <meta name="description" content="Browse handcrafted luxury holiday packages by Flyon Holidays. European romances, tropical villa retreats, Japanese cultural tours, and more.">
+    <link rel="icon" href="assets/img/fav-icon.svg" type="image/svg+xml">
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/custom-style.css">
+    <style>
+        .logo-img { max-height: 48px; width: auto; object-fit: contain; }
+        .inner-hero {
+            position: relative;
+            padding: 140px 0 80px;
+            background: linear-gradient(135deg, rgba(8, 14, 30, 0.9), rgba(13, 22, 48, 0.8)), url('assets/img/innerpages/package-breadcrumb-bg1.jpg') center/cover;
+            border-bottom: 1px solid var(--card-border);
+        }
+        .modal-booking { display: none; position: fixed; inset: 0; z-index: 99999; background: rgba(8, 14, 30, 0.85); backdrop-filter: blur(12px); align-items: center; justify-content: center; padding: 20px; }
+        .modal-booking.active { display: flex; }
+        .modal-card { background: #0d1630; border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 24px; padding: 36px; max-width: 540px; width: 100%; position: relative; }
+        .modal-close { position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.1); border: none; color: #fff; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+        .toast-msg { position: fixed; bottom: 30px; left: 30px; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #fff; padding: 14px 24px; border-radius: 12px; font-weight: 600; box-shadow: 0 10px 30px rgba(0, 201, 167, 0.3); z-index: 9999; transform: translateY(100px); opacity: 0; transition: all 0.4s ease; }
+        .toast-msg.show { transform: translateY(0); opacity: 1; }
+    </style>
+</head>
+<body>
+    <div id="loader"><div class="ld-ring"></div><div class="ld-txt">Flyon Holidays</div></div>
+    <div class="c-dot"></div><div class="c-ring"></div>
+
+    <!-- Header -->
+    <header class="site-hdr" id="siteHeader">
+        <div class="wrap hdr-inner">
+            <a href="index.html" class="logo" title="Flyon Holidays">
+                <img src="assets/img/f-logo.png" alt="Flyon Holidays Logo" class="logo-img">
+            </a>
+            <nav class="nav-list">
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="destinations.html">Destinations</a>
+                <a href="packages.html" class="active">Packages</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <div class="hdr-right">
+                <div class="hdr-phone">
+                    <div class="ph-icon"><i class="bi bi-telephone-fill"></i></div>
+                    <div>
+                        <small>24/7 Concierge</small>
+                        <strong>+44 20 7946 0912</strong>
+                    </div>
+                </div>
+                <button class="btn-p" onclick="openBookingModal('General Inquiry')"><i class="bi bi-calendar-check-fill"></i> Book A Trip</button>
+            </div>
+            <button class="hamburger" id="mobMenuBtn"><span></span><span></span><span></span></button>
+        </div>
+    </header>
+
+    <div class="mob-overlay" id="mobOverlay"></div>
+    <aside class="mob-nav" id="mobNav">
+        <div class="mob-hdr">
+            <a href="index.html" class="logo"><img src="assets/img/f-logo.png" alt="Flyon Holidays Logo" class="logo-img"></a>
+            <button class="mob-close" id="mobCloseBtn"><i class="bi bi-x"></i></button>
+        </div>
+        <div class="mob-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="destinations.html">Destinations</a>
+            <a href="packages.html">Packages</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+    </aside>
+
+    <!-- Inner Hero -->
+    <section class="inner-hero">
+        <div class="wrap text-center">
+            <div class="lbl center">Curated All-Inclusive Itineraries</div>
+            <h1 style="margin-top: 10px;">Holiday Packages</h1>
+            <p style="color: var(--text-light); max-width: 600px; margin: 12px auto 0;">Explore handpicked holiday packages designed by travel experts to offer unmatched luxury, comfort, and memories.</p>
+        </div>
+    </section>
+
+    <!-- Packages Grid -->
+    <section class="sp pkg-sec">
+        <div class="wrap">
+            <div class="pkg-grid">
+                <!-- Package 1 -->
+                <div class="p-card">
+                    <div class="p-img">
+                        <img src="assets/img/innerpages/tour-package-img1.jpg" alt="European Romance">
+                        <span class="p-badge">Best Seller</span>
+                        <div class="p-stars"><i class="bi bi-star-fill"></i> 4.9 (148)</div>
+                    </div>
+                    <div class="p-body">
+                        <h4>European Romance: Paris & Swiss Alps</h4>
+                        <div class="p-meta">
+                            <span class="p-loc"><i class="bi bi-geo-alt-fill"></i> France & Switzerland</span>
+                            <span class="p-dur"><i class="bi bi-clock-fill"></i> 8 Days / 7 Nights</span>
+                        </div>
+                        <div class="p-tags">
+                            <span class="p-tag"><i class="bi bi-check-circle-fill"></i> 5★ Luxury Hotels</span>
+                            <span class="p-tag"><i class="bi bi-check-circle-fill"></i> Daily Gourmet Breakfast</span>
+                            <span class="p-tag"><i class="bi bi-check-circle-fill"></i> Private Transfers</span>
+                        </div>
+                        <div class="p-foot">
+                            <div class="p-price">
+                                <div class="fr">Starting From</div>
+                                <div class="am">$2,450</div>
+                            </div>
+                            <button class="p-book" onclick="openBookingModal('European Romance')">Book Package</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Package 2 -->
+                <div class="p-card">
+                    <div class="p-img">
+                        <img src="assets/img/innerpages/tour-package-img2.jpg" alt="Bali Luxury Villa">
+                        <span class="p-badge grp">Honeymoon</span>
+                        <div class="p-stars"><i class="bi bi-star-fill"></i> 5.0 (96)</div>
+                    </div>
+                    <div class="p-body">
+                        <h4>Bali Luxury Tropical Villa Retreat</h4>
+                        <div class="p-meta">
+                            <span class="p-loc"><i class="bi bi-geo-alt-fill"></i> Bali, Indonesia</span>
+                            <span class="p-dur"><i class="bi bi-clock-fill"></i> 6 Days / 5 Nights</span>
+                        </div>
+                        <div class="p-tags">
+                            <span class="p-tag"><i class="bi bi-check-circle-fill"></i> Private Pool Villa</span>
+                            <span class="p-tag"><i class="bi bi-check-circle-fill"></i> Spa Package Included</span>
+                            <span class="p-tag"><i class="bi bi-check-circle-fill"></i> Sunset Cruise</span>
+                        </div>
+                        <div class="p-foot">
+                            <div class="p-price">
+                                <div class="fr">Starting From</div>
+                                <div class="am">$1,890</div>
+                            </div>
+                            <button class="p-book" onclick="openBookingModal('Bali Villa Retreat')">Book Package</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Package 3 -->
+                <div class="p-card">
+                    <div class="p-img">
+                        <img src="assets/img/innerpages/tour-package-img3.jpg" alt="Japan Heritage">
+                        <span class="p-badge">Popular</span>
+                        <div class="p-stars"><i class="bi bi-star-fill"></i> 4.8 (112)</div>
+                    </div>
+                    <div class="p-body">
+                        <h4>Japan Heritage & Modern Wonders</h4>
+                        <div class="p-meta">
+                            <span class="p-loc"><i class="bi bi-geo-alt-fill"></i> Tokyo & Kyoto, Japan</span>
+                            <span class="p-dur"><i class="bi bi-clock-fill"></i> 10 Days / 9 Nights</span>
+                        </div>
+                        <div class="p-tags">
+                            <span class="p-tag"><i class="bi bi-check-circle-fill"></i> Shinkansen Express</span>
+                            <span class="p-tag"><i class="bi bi-check-circle-fill"></i> Tea Ceremony</span>
+                            <span class="p-tag"><i class="bi bi-check-circle-fill"></i> Mt Fuji Tour</span>
+                        </div>
+                        <div class="p-foot">
+                            <div class="p-price">
+                                <div class="fr">Starting From</div>
+                                <div class="am">$3,120</div>
+                            </div>
+                            <button class="p-book" onclick="openBookingModal('Japan Heritage Tour')">Book Package</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Package 4 -->
+                <div class="p-card">
+                    <div class="p-img">
+                        <img src="assets/img/innerpages/tour-package-img4.jpg" alt="Greek Islands Cruise">
+                        <span class="p-badge">Cruises</span>
+                        <div class="p-stars"><i class="bi bi-star-fill"></i> 4.9 (84)</div>
+                    </div>
+                    <div class="p-body">
+                        <h4>Santorini & Mykonos Luxury Yacht Cruise</h4>
+                        <div class="p-meta">
+                            <span class="p-loc"><i class="bi bi-geo-alt-fill"></i> Greek Islands</span>
+                            <span class="p-dur"><i class="bi bi-clock-fill"></i> 7 Days / 6 Nights</span>
+                        </div>
+                        <div class="p-tags">
+                            <span class="p-tag"><i class="bi bi-check-circle-fill"></i> Private Yacht Cabin</span>
+                            <span class="p-tag"><i class="bi bi-check-circle-fill"></i> Wine Tasting</span>
+                            <span class="p-tag"><i class="bi bi-check-circle-fill"></i> Guided Ruins</span>
+                        </div>
+                        <div class="p-foot">
+                            <div class="p-price">
+                                <div class="fr">Starting From</div>
+                                <div class="am">$2,790</div>
+                            </div>
+                            <button class="p-book" onclick="openBookingModal('Greek Islands Cruise')">Book Package</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-ftr">
+        <div class="wrap">
+            <div class="ftr-grid">
+                <div class="ftr-brand">
+                    <a href="index.html"><img src="assets/img/f-logo.png" alt="Flyon Holidays Logo" class="logo-img"></a>
+                    <p>Make Moments, Not Just Trips. Flyon Holidays offers premium travel packages worldwide.</p>
+                </div>
+                <div class="ftr-col">
+                    <h6>Quick Links</h6>
+                    <div class="ftr-links">
+                        <a href="index.html">Home</a>
+                        <a href="about.html">About Us</a>
+                        <a href="destinations.html">Destinations</a>
+                        <a href="packages.html">Packages</a>
+                        <a href="contact.html">Contact Us</a>
+                    </div>
+                </div>
+                <div class="ftr-col">
+                    <h6>Top Regions</h6>
+                    <div class="ftr-links">
+                        <a href="destinations.html">Europe</a>
+                        <a href="destinations.html">Asia</a>
+                        <a href="destinations.html">Africa</a>
+                        <a href="destinations.html">Americas</a>
+                    </div>
+                </div>
+                <div class="ftr-col">
+                    <h6>Contact Us</h6>
+                    <div class="ftr-ci"><div class="fi"><i class="bi bi-geo-alt-fill"></i></div><div class="ft">45 Park Lane, Mayfair, London W1K 1PN</div></div>
+                    <div class="ftr-ci"><div class="fi"><i class="bi bi-envelope-fill"></i></div><div class="ft">contact@flyonholidays.com</div></div>
+                    <div class="ftr-ci"><div class="fi"><i class="bi bi-telephone-fill"></i></div><div class="ft">+44 20 7946 0912</div></div>
+                </div>
+            </div>
+            <div class="ftr-bot">
+                <p>&copy; 2026 Flyon Holidays. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div class="modal-booking" id="bookingModal">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeBookingModal()">&times;</button>
+            <div class="lbl">Flyon Holidays</div>
+            <h3 id="modalTitle">Book Your Package</h3>
+            <form onsubmit="handleModalSubmit(event)" style="margin-top: 20px;">
+                <div style="margin-bottom: 12px;"><input type="text" required placeholder="Full Name" style="width:100%; padding:12px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); border-radius:8px; color:#fff;"></div>
+                <div style="margin-bottom: 12px;"><input type="email" required placeholder="Email Address" style="width:100%; padding:12px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); border-radius:8px; color:#fff;"></div>
+                <div style="margin-bottom: 18px;"><input type="tel" required placeholder="Phone Number" style="width:100%; padding:12px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); border-radius:8px; color:#fff;"></div>
+                <button type="submit" class="btn-p w-100 justify-content-center">Submit Booking Request</button>
+            </form>
+        </div>
+    </div>
+    <div class="toast-msg" id="toastMsg">Notification</div>
+
+    <script>
+        window.addEventListener('load', () => document.getElementById('loader')?.classList.add('hide'));
+        const header = document.getElementById('siteHeader');
+        window.addEventListener('scroll', () => header?.classList.toggle('stuck', window.scrollY > 80));
+        const mobMenuBtn = document.getElementById('mobMenuBtn');
+        const mobCloseBtn = document.getElementById('mobCloseBtn');
+        const mobOverlay = document.getElementById('mobOverlay');
+        const mobNav = document.getElementById('mobNav');
+        function toggleMobNav(open) { mobNav?.classList.toggle('open', open); mobOverlay?.classList.toggle('open', open); }
+        mobMenuBtn?.addEventListener('click', () => toggleMobNav(true));
+        mobCloseBtn?.addEventListener('click', () => toggleMobNav(false));
+        mobOverlay?.addEventListener('click', () => toggleMobNav(false));
+
+        function openBookingModal(pkg) { if (pkg) document.getElementById('modalTitle').textContent = 'Book ' + pkg; document.getElementById('bookingModal').classList.add('active'); }
+        function closeBookingModal() { document.getElementById('bookingModal').classList.remove('active'); }
+        function handleModalSubmit(e) { e.preventDefault(); closeBookingModal(); const t = document.getElementById('toastMsg'); t.textContent = '🎉 Package booking submitted! Our team will contact you shortly.'; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 4000); }
+    </script>
+</body>
+</html>

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destinations - Flyon Holidays</title>
+    <meta name="description" content="Explore luxury destinations worldwide with Flyon Holidays. Paris, Tokyo, Swiss Alps, Santorini, Bali, Cairo and beyond.">
+    <link rel="icon" href="assets/img/fav-icon.svg" type="image/svg+xml">
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/custom-style.css">
+    <style>
+        .logo-img { max-height: 48px; width: auto; object-fit: contain; }
+        .inner-hero {
+            position: relative;
+            padding: 140px 0 80px;
+            background: linear-gradient(135deg, rgba(8, 14, 30, 0.9), rgba(13, 22, 48, 0.8)), url('assets/img/innerpages/breadcrumb-bg3.jpg') center/cover;
+            border-bottom: 1px solid var(--card-border);
+        }
+        .modal-booking { display: none; position: fixed; inset: 0; z-index: 99999; background: rgba(8, 14, 30, 0.85); backdrop-filter: blur(12px); align-items: center; justify-content: center; padding: 20px; }
+        .modal-booking.active { display: flex; }
+        .modal-card { background: #0d1630; border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 24px; padding: 36px; max-width: 540px; width: 100%; position: relative; }
+        .modal-close { position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.1); border: none; color: #fff; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+        .toast-msg { position: fixed; bottom: 30px; left: 30px; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #fff; padding: 14px 24px; border-radius: 12px; font-weight: 600; box-shadow: 0 10px 30px rgba(0, 201, 167, 0.3); z-index: 9999; transform: translateY(100px); opacity: 0; transition: all 0.4s ease; }
+        .toast-msg.show { transform: translateY(0); opacity: 1; }
+        .filter-bar {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        .f-btn {
+            padding: 10px 22px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid var(--card-border);
+            border-radius: 100px;
+            color: #fff;
+            font-size: 0.88rem;
+            cursor: pointer;
+            transition: var(--ease);
+        }
+        .f-btn.active, .f-btn:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            box-shadow: 0 6px 20px var(--primary-glow);
+        }
+    </style>
+</head>
+<body>
+    <div id="loader"><div class="ld-ring"></div><div class="ld-txt">Flyon Holidays</div></div>
+    <div class="c-dot"></div><div class="c-ring"></div>
+
+    <!-- Header -->
+    <header class="site-hdr" id="siteHeader">
+        <div class="wrap hdr-inner">
+            <a href="index.html" class="logo" title="Flyon Holidays">
+                <img src="assets/img/f-logo.png" alt="Flyon Holidays Logo" class="logo-img">
+            </a>
+            <nav class="nav-list">
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="destinations.html" class="active">Destinations</a>
+                <a href="packages.html">Packages</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <div class="hdr-right">
+                <div class="hdr-phone">
+                    <div class="ph-icon"><i class="bi bi-telephone-fill"></i></div>
+                    <div>
+                        <small>24/7 Concierge</small>
+                        <strong>+44 20 7946 0912</strong>
+                    </div>
+                </div>
+                <button class="btn-p" onclick="openBookingModal('General Inquiry')"><i class="bi bi-calendar-check-fill"></i> Book A Trip</button>
+            </div>
+            <button class="hamburger" id="mobMenuBtn"><span></span><span></span><span></span></button>
+        </div>
+    </header>
+
+    <div class="mob-overlay" id="mobOverlay"></div>
+    <aside class="mob-nav" id="mobNav">
+        <div class="mob-hdr">
+            <a href="index.html" class="logo"><img src="assets/img/f-logo.png" alt="Flyon Holidays Logo" class="logo-img"></a>
+            <button class="mob-close" id="mobCloseBtn"><i class="bi bi-x"></i></button>
+        </div>
+        <div class="mob-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="destinations.html">Destinations</a>
+            <a href="packages.html">Packages</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+    </aside>
+
+    <!-- Inner Hero -->
+    <section class="inner-hero">
+        <div class="wrap text-center">
+            <div class="lbl center">Curated Handpicked Regions</div>
+            <h1 style="margin-top: 10px;">World Destinations</h1>
+            <p style="color: var(--text-light); max-width: 600px; margin: 12px auto 0;">From timeless European capitals to pristine tropical islands, discover where your next journey begins with Flyon Holidays.</p>
+        </div>
+    </section>
+
+    <!-- Destinations Grid & Filter -->
+    <section class="sp dest-sec">
+        <div class="wrap">
+            <div class="filter-bar">
+                <button class="f-btn active" onclick="filterDest('all')">All Continents</button>
+                <button class="f-btn" onclick="filterDest('europe')">Europe</button>
+                <button class="f-btn" onclick="filterDest('asia')">Asia</button>
+                <button class="f-btn" onclick="filterDest('americas')">Americas</button>
+                <button class="f-btn" onclick="filterDest('africa')">Africa & Middle East</button>
+            </div>
+
+            <div class="dest-grid" id="destGrid">
+                <!-- Card 1 -->
+                <div class="d-card big dest-item europe" onclick="openBookingModal('Paris, France')">
+                    <img src="assets/img/innerpages/destination-img1.jpg" alt="Paris France">
+                    <div class="d-card-ov"></div>
+                    <div class="d-card-info">
+                        <span class="d-badge">Europe</span>
+                        <h3>Paris, France</h3>
+                        <div class="d-country"><i class="bi bi-geo-alt-fill"></i> Romantic City & Gourmet Cuisine</div>
+                    </div>
+                    <button class="d-hover-btn">Book Paris Package</button>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="d-card dest-item asia" onclick="openBookingModal('Tokyo, Japan')">
+                    <img src="assets/img/innerpages/destination-img2.jpg" alt="Tokyo Japan">
+                    <div class="d-card-ov"></div>
+                    <div class="d-card-info">
+                        <span class="d-badge">Asia</span>
+                        <h3>Tokyo, Japan</h3>
+                        <div class="d-country"><i class="bi bi-geo-alt-fill"></i> Ancient Temples & Futuristic Tech</div>
+                    </div>
+                    <button class="d-hover-btn">Book Tokyo Package</button>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="d-card dest-item europe" onclick="openBookingModal('Santorini, Greece')">
+                    <img src="assets/img/innerpages/destination-img3.jpg" alt="Santorini Greece">
+                    <div class="d-card-ov"></div>
+                    <div class="d-card-info">
+                        <span class="d-badge">Europe</span>
+                        <h3>Santorini, Greece</h3>
+                        <div class="d-country"><i class="bi bi-geo-alt-fill"></i> Caldera Views & Luxury Resorts</div>
+                    </div>
+                    <button class="d-hover-btn">Book Santorini Package</button>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="d-card dest-item europe" onclick="openBookingModal('Swiss Alps')">
+                    <img src="assets/img/innerpages/destination-img4.jpg" alt="Swiss Alps">
+                    <div class="d-card-ov"></div>
+                    <div class="d-card-info">
+                        <span class="d-badge">Europe</span>
+                        <h3>Swiss Alps</h3>
+                        <div class="d-country"><i class="bi bi-geo-alt-fill"></i> Alpine Peaks & Panoramic Trains</div>
+                    </div>
+                    <button class="d-hover-btn">Book Swiss Alps Package</button>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="d-card dest-item asia" onclick="openBookingModal('Bali, Indonesia')">
+                    <img src="assets/img/innerpages/destination-img5.jpg" alt="Bali Indonesia">
+                    <div class="d-card-ov"></div>
+                    <div class="d-card-info">
+                        <span class="d-badge">Asia</span>
+                        <h3>Bali, Indonesia</h3>
+                        <div class="d-country"><i class="bi bi-geo-alt-fill"></i> Tropical Villas & Sacred Temples</div>
+                    </div>
+                    <button class="d-hover-btn">Book Bali Package</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-ftr">
+        <div class="wrap">
+            <div class="ftr-grid">
+                <div class="ftr-brand">
+                    <a href="index.html"><img src="assets/img/f-logo.png" alt="Flyon Holidays Logo" class="logo-img"></a>
+                    <p>Make Moments, Not Just Trips. Flyon Holidays offers premium travel packages worldwide.</p>
+                </div>
+                <div class="ftr-col">
+                    <h6>Quick Links</h6>
+                    <div class="ftr-links">
+                        <a href="index.html">Home</a>
+                        <a href="about.html">About Us</a>
+                        <a href="destinations.html">Destinations</a>
+                        <a href="packages.html">Packages</a>
+                        <a href="contact.html">Contact Us</a>
+                    </div>
+                </div>
+                <div class="ftr-col">
+                    <h6>Destinations</h6>
+                    <div class="ftr-links">
+                        <a href="destinations.html">France</a>
+                        <a href="destinations.html">Japan</a>
+                        <a href="destinations.html">Greece</a>
+                        <a href="destinations.html">Switzerland</a>
+                        <a href="destinations.html">Indonesia</a>
+                    </div>
+                </div>
+                <div class="ftr-col">
+                    <h6>Contact Us</h6>
+                    <div class="ftr-ci"><div class="fi"><i class="bi bi-geo-alt-fill"></i></div><div class="ft">45 Park Lane, Mayfair, London W1K 1PN</div></div>
+                    <div class="ftr-ci"><div class="fi"><i class="bi bi-envelope-fill"></i></div><div class="ft">contact@flyonholidays.com</div></div>
+                    <div class="ftr-ci"><div class="fi"><i class="bi bi-telephone-fill"></i></div><div class="ft">+44 20 7946 0912</div></div>
+                </div>
+            </div>
+            <div class="ftr-bot">
+                <p>&copy; 2026 Flyon Holidays. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div class="modal-booking" id="bookingModal">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeBookingModal()">&times;</button>
+            <div class="lbl">Flyon Holidays</div>
+            <h3 id="modalTitle">Book Your Trip</h3>
+            <form onsubmit="handleModalSubmit(event)" style="margin-top: 20px;">
+                <div style="margin-bottom: 12px;"><input type="text" required placeholder="Full Name" style="width:100%; padding:12px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); border-radius:8px; color:#fff;"></div>
+                <div style="margin-bottom: 12px;"><input type="email" required placeholder="Email Address" style="width:100%; padding:12px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); border-radius:8px; color:#fff;"></div>
+                <div style="margin-bottom: 18px;"><input type="tel" required placeholder="Phone Number" style="width:100%; padding:12px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); border-radius:8px; color:#fff;"></div>
+                <button type="submit" class="btn-p w-100 justify-content-center">Submit Inquiry</button>
+            </form>
+        </div>
+    </div>
+    <div class="toast-msg" id="toastMsg">Notification</div>
+
+    <script>
+        window.addEventListener('load', () => document.getElementById('loader')?.classList.add('hide'));
+        const header = document.getElementById('siteHeader');
+        window.addEventListener('scroll', () => header?.classList.toggle('stuck', window.scrollY > 80));
+        const mobMenuBtn = document.getElementById('mobMenuBtn');
+        const mobCloseBtn = document.getElementById('mobCloseBtn');
+        const mobOverlay = document.getElementById('mobOverlay');
+        const mobNav = document.getElementById('mobNav');
+        function toggleMobNav(open) { mobNav?.classList.toggle('open', open); mobOverlay?.classList.toggle('open', open); }
+        mobMenuBtn?.addEventListener('click', () => toggleMobNav(true));
+        mobCloseBtn?.addEventListener('click', () => toggleMobNav(false));
+        mobOverlay?.addEventListener('click', () => toggleMobNav(false));
+
+        function filterDest(cat) {
+            document.querySelectorAll('.f-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            const cards = document.querySelectorAll('.dest-item');
+            cards.forEach(card => {
+                if (cat === 'all' || card.classList.contains(cat)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function openBookingModal(pkg) { if (pkg) document.getElementById('modalTitle').textContent = 'Book ' + pkg; document.getElementById('bookingModal').classList.add('active'); }
+        function closeBookingModal() { document.getElementById('bookingModal').classList.remove('active'); }
+        function handleModalSubmit(e) { e.preventDefault(); closeBookingModal(); const t = document.getElementById('toastMsg'); t.textContent = '🎉 Inquiry received! Our team will contact you shortly.'; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 4000); }
+    </script>
+</body>
+</html>

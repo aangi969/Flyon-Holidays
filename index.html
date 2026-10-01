@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flyon Holidays - Make Moments, Not Just Trips</title>
+    <meta name="description" content="Discover extraordinary world destinations, luxury tour packages, and custom holiday experiences with Flyon Holidays. Make moments, not just trips.">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="assets/img/fav-icon.svg" type="image/svg+xml">
+    
+    <!-- Bootstrap CSS -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/css/boxicons.min.css" rel="stylesheet">
+    
+    <!-- Custom Style CSS -->
+    <link rel="stylesheet" href="assets/css/custom-style.css">
+    
+    <style>
+        /* Additional custom enhancements for Flyon Holidays */
+        .logo-img {
+            max-height: 48px;
+            width: auto;
+            object-fit: contain;
+        }
+        .modal-booking {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            background: rgba(8, 14, 30, 0.85);
+            backdrop-filter: blur(12px);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .modal-booking.active {
+            display: flex;
+        }
+        .modal-card {
+            background: #0d1630;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 24px;
+            padding: 36px;
+            max-width: 540px;
+            width: 100%;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+        }
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #fff;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+        .modal-close:hover {
+            background: var(--primary);
+        }
+        .toast-msg {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #fff;
+            padding: 14px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(0, 201, 167, 0.3);
+            z-index: 9999;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+        .toast-msg.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .header-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Page Loader -->
+    <div id="loader">
+        <div class="ld-ring"></div>
+        <div class="ld-txt">Flyon Holidays</div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="c-dot"></div>
+    <div class="c-ring"></div>
+
+    <!-- Sticky Header -->
+    <header class="site-hdr" id="siteHeader">
+        <div class="wrap hdr-inner">
+            <!-- Brand Logo (UNCHANGED LOGO) -->
+            <a href="index.html" class="logo header-logo-container" title="Flyon Holidays">
+                <img src="assets/img/f-logo.png" alt="Flyon Holidays Logo" class="logo-img">
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="nav-list">
+                <a href="index.html" class="active">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="destinations.html">Destinations</a>
+                <a href="packages.html">Packages</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+
+            <!-- Header Right Call & CTA -->
+            <div class="hdr-right">
+                <div class="hdr-phone">
+                    <div class="ph-icon"><i class="bi bi-telephone-fill"></i></div>
+                    <div>
+                        <small>24/7 Concierge</small>
+                        <strong>+44 20 7946 0912</strong>
+                    </div>
+                </div>
+                <button class="btn-p" onclick="openBookingModal('General Inquiry')">
+                    <i class="bi bi-calendar-check-fill"></i> Book A Trip
+                </button>
+            </div>
+
+            <!-- Hamburger Button -->
+            <button class="hamburger" id="mobMenuBtn" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mob-overlay" id="mobOverlay"></div>
+    <aside class="mob-nav" id="mobNav">
+        <div class="mob-hdr">
+            <a href="index.html" class="logo">
+                <img src="assets/img/f-logo.png" alt="Flyon Holidays Logo" class="logo-img">
+            </a>
+            <button class="mob-close" id="mobCloseBtn"><i class="bi bi-x"></i></button>
+        </div>
+        <div class="mob-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="destinations.html">Destinations</a>
+            <a href="packages.html">Packages</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+        <div style="margin-top: 30px;">
+            <button class="btn-p w-100 justify-content-center" onclick="openBookingModal('General Inquiry')">
+                <i class="bi bi-calendar-check-fill"></i> Book A Trip
+            </button>
+        </div>
+    </aside>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <img src="assets/img/innerpages/breadcrumb-bg9.jpg" alt="Flyon Holidays Hero Background">
+        </div>
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+
+        <div class="wrap hero-inner">
+            <div class="hero-badge">
+                <i class="bi bi-compass-fill"></i> Make Moments, Not Just Trips
+            </div>
+            <h1>Explore The Unexplored World With <em>Flyon Holidays</em></h1>
+            <p>Experience ultra-luxury stays, handpicked local itineraries, and effortless global travel crafted specifically around your unique travel desires.</p>
+            
+            <div class="hero-btns">
+                <a href="destinations.html" class="btn-p">
+                    <i class="bi bi-globe-americas"></i> Explore Destinations
+                </a>
+                <button class="btn-o" onclick="openBookingModal('Custom Itinerary')">
+                    <i class="bi bi-sliders"></i> Plan Custom Trip
+                </button>
+            </div>
+
+            <!-- Booking Search Filter -->
+            <div class="hero-search">
+                <form class="s-card" onsubmit="handleSearch(event)">
+                    <div class="s-field">
+                        <label><i class="bi bi-geo-alt-fill"></i> Destination</label>
+                        <select id="searchDest">
+                            <option value="">Select Destination</option>
+                            <option value="Paris, France">Paris, France</option>
+                            <option value="Tokyo, Japan">Tokyo, Japan</option>
+                            <option value="Santorini, Greece">Santorini, Greece</option>
+                            <option value="Swiss Alps, Switzerland">Swiss Alps, Switzerland</option>
+                            <option value="Bali, Indonesia">Bali, Indonesia</option>
+                            <option value="Cairo, Egypt">Cairo, Egypt</option>
+                        </select>
+                    </div>
+                    <div class="s-field">
+                        <label><i class="bi bi-calendar3"></i> Travel Date</label>
+                        <input type="date" id="searchDate" value="2026-11-01">
+                    </div>
+                    <div class="s-field">
+                        <label><i class="bi bi-people-fill"></i> Guests</label>
+                        <select id="searchGuests">
+                            <option value="1">1 Person</option>
+                            <option value="2" selected>2 Guests (Couple)</option>
+                            <option value="4">4 Guests (Family)</option>
+                            <option value="6">6+ Guests (Group)</option>
+                        </select>
+                    </div>
+                    <div class="s-btn-wrap">
+                        <button type="submit" class="s-btn">
+                            <i class="bi bi-search"></i> Find Holidays
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Stats Counter Row -->
+            <div class="hero-stats">
+                <div class="h-stat">
+                    <div class="n">15<em>K+</em></div>
+                    <div class="t">Happy Travelers</div>
+                </div>
+                <div class="h-stat">
+                    <div class="n">120<em>+</em></div>
+                    <div class="t">Global Destinations</div>
+                </div>
+                <div class="h-stat">
+                    <div class="n">99.4<em>%</em></div>
+                    <div class="t">Satisfaction Rate</div>
+                </div>
+                <div class="h-stat">
+                    <div class="n">24<em>/7</em></div>
+                    <div class="t">Personal Support</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-cue">
+            <span>Scroll</span>
+            <div class="s-mouse"></div>
+        </div>
+    </section>
+
+    <!-- Marquee Highlights Band -->
+    <div class="band">
+        <div class="band-track">
+            <div class="band-item"><i class="bi bi-shield-check"></i> 100% Verified Stays</div>
+            <div class="band-item"><i class="bi bi-airplane-engines-fill"></i> Premium Flight Booking</div>
+            <div class="band-item"><i class="bi bi-star-fill"></i> 5-Star Handpicked Resorts</div>
+            <div class="band-item"><i class="bi bi-headset"></i> 24/7 VIP Concierge Support</div>
+            <div class="band-item"><i class="bi bi-award-fill"></i> Award Winning Agency</div>
+            <div class="band-item"><i class="bi bi-currency-dollar"></i> Best Price Guarantee</div>
+            <!-- repeated for infinite loop -->
+            <div class="band-item"><i class="bi bi-shield-check"></i> 100% Verified Stays</div>
+            <div class="band-item"><i class="bi bi-airplane-engines-fill"></i> Premium Flight Booking</div>
+            <div class="band-item"><i class="bi bi-star-fill"></i> 5-Star Handpicked Resorts</div>
+            <div class="band-item"><i class="bi bi-headset"></i> 24/7 VIP Concierge Support</div>
+        </div>
+    </div>
+
+    <!-- Featured Destinations Section -->
+    <section class="sp dest-sec" id="destinations">
+        <div class="wrap">
+            <div class="sh-row">
+                <div>
+                    <div class="lbl">Top Destinations</div>
+                    <h2>Explore World's Most Iconic Places</h2>
+                </div>
+                <a href="destinations.html" class="btn-o">View All Destinations <i class="bi bi-arrow-right"></i></a>
+            </div>
+
+            <div class="dest-grid">
+                <!-- Card 1 (Big) -->
+                <div class="d-card big reveal d1" onclick="openBookingModal('Paris, France')">
+                    <img src="assets/img/innerpages/destination-img1.jpg" alt="Paris France - Flyon Holidays">
+                    <div class="d-card-ov"></div>
+                    <div class="d-card-info">
+                        <span class="d-badge">Popular Choice</span>
+                        <h3>Paris, France</h3>
+                        <div class="d-country"><i class="bi bi-geo-alt-fill"></i> Europe &bull; Romantic Escape</div>
+                    </div>
+                    <button class="d-hover-btn">Explore Paris Packages</button>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="d-card reveal d2" onclick="openBookingModal('Tokyo, Japan')">
+                    <img src="assets/img/innerpages/destination-img2.jpg" alt="Tokyo Japan - Flyon Holidays">
+                    <div class="d-card-ov"></div>
+                    <div class="d-card-info">
+                        <span class="d-badge">Trending</span>
+                        <h3>Tokyo, Japan</h3>
+                        <div class="d-country"><i class="bi bi-geo-alt-fill"></i> Asia &bull; Culture & Tech</div>
+                    </div>
+                    <button class="d-hover-btn">Explore Tokyo</button>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="d-card reveal d3" onclick="openBookingModal('Santorini, Greece')">
+                    <img src="assets/img/innerpages/destination-img3.jpg" alt="Santorini Greece - Flyon Holidays">
+                    <div class="d-card-ov"></div>
+                    <div class="d-card-info">
+                        <span class="d-badge">Luxury</span>
+                        <h3>Santorini, Greece</h3>
+                        <div class="d-country"><i class="bi bi-geo-alt-fill"></i> Europe &bull; Aegean Sunset</div>
+                    </div>
+                    <button class="d-hover-btn">Explore Santorini</button>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="d-card reveal d2" onclick="openBookingModal('Swiss Alps')">
+                    <img src="assets/img/innerpages/destination-img4.jpg" alt="Swiss Alps - Flyon Holidays">
+                    <div class="d-card-ov"></div>
+                    <div class="d-card-info">
+                        <span class="d-badge">Adventure</span>
+                        <h3>Swiss Alps</h3>
+                        <div class="d-country"><i class="bi bi-geo-alt-fill"></i> Switzerland &bull; Alpine Wonders</div>
+                    </div>
+                    <button class="d-hover-btn">Explore Swiss Alps</button>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="d-card reveal d3" onclick="openBookingModal('Bali, Indonesia')">
+                    <img src="assets/img/innerpages/destination-img5.jpg" alt="Bali Indonesia - Flyon Holidays">
+                    <div class="d-card-ov"></div>
+                    <div class="d-card-info">
+                        <span class="d-badge">Relaxation</span>
+                        <h3>Bali, Indonesia</h3>
+                        <div class="d-country"><i class="bi bi-geo-alt-fill"></i> Asia &bull; Tropical Paradise</div>
+                    </div>
+                    <button class="d-hover-btn">Explore Bali</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Tour Packages Section -->
+    <section class="sp pkg-sec" id="packages">
+        <div class="wrap">
+            <div class="sh-row">
+                <div>
+                    <div class="lbl">Handcrafted Packages</div>
+                    <h2>Featured Holiday Packages</h2>
+                </div>
+                <a href="packages.html" class="btn-o">View All Packages <i class="bi bi-arrow-right"></i></a>
+            </div>
+
+            <div class="pkg-grid">
+                <!-- Package 1 -->
+                <div class="p-card reveal d1">
+                    <div class="p-img">
+                        <img src="assets/img/innerpages/tour-package-img1.jpg" alt="European Romantic Odyssey">
+                        <span class="p-badge">Best Seller</span>
+                        <div class="p-stars"><i class="bi bi-star-fill"></i> 4.9 (148)</div>
+                    </div>
+                    <div class="p-body">
+                        <h4>European Romance: Paris & Swiss Alps</h4>
+                        <div class="p-meta">
+                            <span class="p-loc"><i class="bi bi-geo-alt-fill"></i> France & Switzerland</span>
+                            <span class="p-dur"><i class="bi bi-clock-fill"></i> 8 Days / 7 Nights</span>
+                        </div>
+                        <div class="p-tags">
+                            <span class="p-tag"><i class="bi bi-check-circle-fill"></i> 5★ Hotels</span>
+                            <span class="p-tag"><i class="bi bi-check-circle-fill"></i> Breakfast Included</span>
+                            <span class="p-tag"><i class="bi bi-check-circle-fill"></i> Guided Tours</span>
+                        </div>
+                        <div class="p-foot">
+                            <div class="p-price">
+                                <div class="fr">Starting From</div>
+                                <div class="am">$2,450</div>
+                                <div class="pr">per person</div>
+                            </div>
+                            <button class="p-book" onclick="openBookingModal('European Romance')">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Package 2 -->
+                <div class="p-card reveal d2">
+                    <div class="p-img">
+                        <img src="assets/img/innerpages/tour-package-img2.jpg" alt="Bali Luxury Tropical Villa Escape">
+                        <span class="p-badge grp">Honeymoon Special</span>
+                        <div class="p-stars"><i class="bi bi-star-fill"></i> 5.0 (96)</div>
+                    </div>
+                    <div class="p-body">
+                        <h4>Bali Luxury Tropical Villa Retreat</h4>
+                        <div class="p-meta">
+                            <span class="p-loc"><i class="bi bi-geo-alt-fill"></i> Bali, Indonesia</span>
+                            <span class="p-dur"><i class="bi bi-clock-fill"></i> 6 Days / 5 Nights</span>
+                        </div>
+                        <div class="p-tags">
+                            <span class="p-tag"><i class="bi bi-check-circle-fill"></i> Private Pool Villa</span>
+                            <span class="p-tag"><i class="bi bi-check-circle-fill"></i> Spa Treatments</span>
+                            <span class="p-tag"><i class="bi bi-check-circle-fill"></i> Airport Transfer</span>
+                        </div>
+                        <div class="p-foot">
+                            <div class="p-price">
+                                <div class="fr">Starting From</div>
+                                <div class="am">$1,890</div>
+                                <div class="pr">per person</div>
+                            </div>
+                            <button class="p-book" onclick="openBookingModal('Bali Villa Retreat')">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Package 3 -->
+                <div class="p-card reveal d3">
+                    <div class="p-img">
+                        <img src="assets/img/innerpages/tour-package-img3.jpg" alt="Kyoto & Tokyo Blossom Experience">
+                        <span class="p-badge">Exclusive</span>
+                        <div class="p-stars"><i class="bi bi-star-fill"></i> 4.8 (112)</div>
+                    </div>
+                    <div class="p-body">
+                        <h4>Japan Heritage & Modern Wonders</h4>
+                        <div class="p-meta">
+                            <span class="p-loc"><i class="bi bi-geo-alt-fill"></i> Tokyo & Kyoto, Japan</span>
+                            <span class="p-dur"><i class="bi bi-clock-fill"></i> 10 Days / 9 Nights</span>
+                        </div>
+                        <div class="p-tags">
+                            <span class="p-tag"><i class="bi bi-check-circle-fill"></i> Bullet Train Pass</span>
+                            <span class="p-tag"><i class="bi bi-check-circle-fill"></i> Tea Ceremony</span>
+                            <span class="p-tag"><i class="bi bi-check-circle-fill"></i> Mt. Fuji Excursion</span>
+                        </div>
+                        <div class="p-foot">
+                            <div class="p-price">
+                                <div class="fr">Starting From</div>
+                                <div class="am">$3,120</div>
+                                <div class="pr">per person</div>
+                            </div>
+                            <button class="p-book" onclick="openBookingModal('Japan Heritage Tour')">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upgraded About Flyon Holidays Section (Fully Centralized) -->
+    <section class="why-sec text-center" id="about" style="padding: 50px 0;">
+        <div class="wrap">
+            <!-- Centered Header -->
+            <div style="max-width: 800px; margin: 0 auto 30px;">
+                <div class="lbl center" style="margin-bottom: 8px;">About Flyon Holidays</div>
+                <h2 style="font-size: 2.3rem; margin-bottom: 12px;">We Redefine The Art Of Bespoke Luxury Travel</h2>
+                <p style="color: var(--text-light); font-size: 0.98rem; line-height: 1.6; margin: 0 auto;">At <strong>Flyon Holidays</strong>, we believe travel is not merely about visiting places—it's about how those places make you feel. Based in Mayfair, London, our master travel designers craft bespoke, seamlessly organized journeys across 120+ worldwide destinations.</p>
+            </div>
+
+            <!-- Centered 3-Card Feature Grid -->
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1050px; margin: 0 auto 28px;">
+                <div style="padding: 24px 20px; background: rgba(255,255,255,0.04); border: 1px solid var(--card-border); border-radius: var(--r-md); text-align: center; transition: var(--ease);">
+                    <div style="width: 48px; height: 48px; background: rgba(0,201,167,0.12); border-radius: var(--r-sm); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; color: var(--primary); margin: 0 auto 14px;"><i class="bi bi-award-fill"></i></div>
+                    <h5 style="font-size: 0.95rem; margin-bottom: 6px;">Bespoke Handcrafted Itineraries</h5>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0; line-height: 1.5;">Tailored exclusively to your pace, preferences, and passions—no cookie-cutter templates.</p>
+                </div>
+
+                <div style="padding: 24px 20px; background: rgba(255,255,255,0.04); border: 1px solid var(--card-border); border-radius: var(--r-md); text-align: center; transition: var(--ease);">
+                    <div style="width: 48px; height: 48px; background: rgba(0,201,167,0.12); border-radius: var(--r-sm); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; color: var(--primary); margin: 0 auto 14px;"><i class="bi bi-headset"></i></div>
+                    <h5 style="font-size: 0.95rem; margin-bottom: 6px;">24/7 VIP Personal Concierge</h5>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0; line-height: 1.5;">Your dedicated travel specialist is available around the clock before, during, and after your trip.</p>
+                </div>
+
+                <div style="padding: 24px 20px; background: rgba(255,255,255,0.04); border: 1px solid var(--card-border); border-radius: var(--r-md); text-align: center; transition: var(--ease);">
+                    <div style="width: 48px; height: 48px; background: rgba(0,201,167,0.12); border-radius: var(--r-sm); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; color: var(--primary); margin: 0 auto 14px;"><i class="bi bi-shield-check"></i></div>
+                    <h5 style="font-size: 0.95rem; margin-bottom: 6px;">Best Price & Room Upgrades</h5>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0; line-height: 1.5;">Enjoy exclusive resort perks, complimentary room upgrades, breakfast, and zero hidden charges.</p>
+                </div>
+            </div>
+
+            <!-- Centered Founder Quote Box -->
+            <div style="max-width: 680px; margin: 0 auto 24px; padding: 18px 24px; background: rgba(255,255,255,0.04); border-top: 3px solid var(--primary); border-radius: var(--r-md); text-align: center;">
+                <p style="font-size: 0.88rem; color: var(--text-light); font-style: italic; margin-bottom: 6px;">"Our goal is simple: replace travel stress with pure wonder. Every detail is crafted so you can focus on making moments that last."</p>
+                <div style="font-size: 0.8rem; font-weight: 700; color: var(--primary); margin-bottom: 8px;">Edward Montgomery &bull; Founder & CEO</div>
+                <img src="assets/img/innerpages/about-page-founder-signature.png" alt="Founder Signature" style="height: 32px; filter: brightness(0) invert(1); opacity: 0.85; margin: 0 auto;">
+            </div>
+
+            <!-- Centered Action Buttons -->
+            <div style="display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;">
+                <a href="about.html" class="btn-p" style="padding: 11px 26px; font-size: 0.9rem;"><i class="bi bi-arrow-right-circle-fill"></i> Read Our Story</a>
+                <button class="btn-o" onclick="openBookingModal('Travel Consultation')" style="padding: 10px 26px; font-size: 0.9rem;"><i class="bi bi-person-lines-fill"></i> Speak With A Designer</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="stats-sec">
+        <div class="wrap">
+            <div class="stats-grid">
+                <div class="s-item">
+                    <i class="bi bi-globe2"></i>
+                    <div class="sv">120<em>+</em></div>
+                    <div class="sl">Global Destinations</div>
+                </div>
+                <div class="s-item">
+                    <i class="bi bi-people-fill"></i>
+                    <div class="sv">15<em>K+</em></div>
+                    <div class="sl">Delighted Clients</div>
+                </div>
+                <div class="s-item">
+                    <i class="bi bi-award-fill"></i>
+                    <div class="sv">35<em>+</em></div>
+                    <div class="sl">Global Travel Awards</div>
+                </div>
+                <div class="s-item">
+                    <i class="bi bi-star-fill"></i>
+                    <div class="sv">4.9<em>/5</em></div>
+                    <div class="sl">Client Rating Score</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expert Guides Section -->
+    <section class="sp guides-sec">
+        <div class="wrap">
+            <div class="sh-row text-center w-100 justify-content-center" style="margin-bottom: 30px;">
+                <div class="text-center">
+                    <div class="lbl center">Expert Local Guides</div>
+                    <h2>Meet Your Local Destination Experts</h2>
+                </div>
+            </div>
+
+            <div class="guides-grid">
+                <div class="g-card reveal d1">
+                    <div class="g-pic">
+                        <img src="assets/img/home4/testimonial-author-img1.png" alt="Guide Julian Vance">
+                        <div class="g-dot"><i class="bi bi-check"></i></div>
+                    </div>
+                    <h5>Julian Vance</h5>
+                    <div class="gr">Paris & French Riviera Specialist</div>
+                    <div class="gl"><i class="bi bi-geo-alt-fill"></i> Paris, France</div>
+                    <div class="g-soc">
+                        <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+
+                <div class="g-card reveal d2">
+                    <div class="g-pic">
+                        <img src="assets/img/home4/testimonial-author-img2.png" alt="Guide Kenji Takahashi">
+                        <div class="g-dot"><i class="bi bi-check"></i></div>
+                    </div>
+                    <h5>Kenji Takahashi</h5>
+                    <div class="gr">Japan Cultural & Food Historian</div>
+                    <div class="gl"><i class="bi bi-geo-alt-fill"></i> Kyoto, Japan</div>
+                    <div class="g-soc">
+                        <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+
+                <div class="g-card reveal d3">
+                    <div class="g-pic">
+                        <img src="assets/img/home4/testimonial-author-img3.png" alt="Guide Lucas Rostov">
+                        <div class="g-dot"><i class="bi bi-check"></i></div>
+                    </div>
+                    <h5>Lucas Rostov</h5>
+                    <div class="gr">Alpine Trekking & Luxury Ski Master</div>
+                    <div class="gl"><i class="bi bi-geo-alt-fill"></i> Zurich, Switzerland</div>
+                    <div class="g-soc">
+                        <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+
+                <div class="g-card reveal d4">
+                    <div class="g-pic">
+                        <img src="assets/img/home4/testimonial-author-img4.png" alt="Guide Wayan Kusuma">
+                        <div class="g-dot"><i class="bi bi-check"></i></div>
+                    </div>
+                    <h5>Wayan Kusuma</h5>
+                    <div class="gr">Bali Sanctuary & Island Explorer</div>
+                    <div class="gl"><i class="bi bi-geo-alt-fill"></i> Bali, Indonesia</div>
+                    <div class="g-soc">
+                        <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+
+                <!-- Additional Dummy Guides -->
+                <div class="g-card reveal d1">
+                    <div class="g-pic">
+                        <img src="assets/img/home4/testimonial-author-img5.png" alt="Guide Alexander Wright">
+                        <div class="g-dot"><i class="bi bi-check"></i></div>
+                    </div>
+                    <h5>Alexander Wright</h5>
+                    <div class="gr">Aegean Yachting & Island Captain</div>
+                    <div class="gl"><i class="bi bi-geo-alt-fill"></i> Santorini, Greece</div>
+                    <div class="g-soc">
+                        <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+
+                <div class="g-card reveal d2">
+                    <div class="g-pic">
+                        <img src="assets/img/home1/testimonial-author-img1.png" alt="Guide Carlos Mendoza">
+                        <div class="g-dot"><i class="bi bi-check"></i></div>
+                    </div>
+                    <h5>Carlos Mendoza</h5>
+                    <div class="gr">Spanish Heritage & Tapas Historian</div>
+                    <div class="gl"><i class="bi bi-geo-alt-fill"></i> Madrid, Spain</div>
+                    <div class="g-soc">
+                        <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+
+                <div class="g-card reveal d3">
+                    <div class="g-pic">
+                        <img src="assets/img/home1/testimonial-author-img2.png" alt="Guide Marco Rossi">
+                        <div class="g-dot"><i class="bi bi-check"></i></div>
+                    </div>
+                    <h5>Marco Rossi</h5>
+                    <div class="gr">Italian Architecture & Wine Master</div>
+                    <div class="gl"><i class="bi bi-geo-alt-fill"></i> Rome, Italy</div>
+                    <div class="g-soc">
+                        <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+
+                <div class="g-card reveal d4">
+                    <div class="g-pic">
+                        <img src="assets/img/home1/testimonial-author-img3.png" alt="Guide Tariq Al-Mansoor">
+                        <div class="g-dot"><i class="bi bi-check"></i></div>
+                    </div>
+                    <h5>Tariq Al-Mansoor</h5>
+                    <div class="gr">Pyramids & Nile Cruise Expedition Lead</div>
+                    <div class="gl"><i class="bi bi-geo-alt-fill"></i> Cairo, Egypt</div>
+                    <div class="g-soc">
+                        <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="sp testi-sec">
+        <div class="wrap">
+            <div class="sh-row">
+                <div>
+                    <div class="lbl">Traveler Reviews</div>
+                    <h2>Stories From Our Happy Travelers</h2>
+                </div>
+            </div>
+
+            <div class="testi-grid">
+                <div class="t-card reveal d1">
+                    <div class="t-q">“</div>
+                    <div class="stars">
+                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                    </div>
+                    <h5>Unforgettable Honeymoon in Paris!</h5>
+                    <p>"Flyon Holidays arranged our entire Paris & Swiss Alps trip seamlessly. From private airport pickups to surprise champagne at our hotel, everything was pure magic!"</p>
+                    <div class="t-author">
+                        <img src="assets/img/innerpages/comment-author-01.jpg" alt="Marcus & Sarah Jenkins">
+                        <div>
+                            <h6>Marcus & Sarah Jenkins</h6>
+                            <span>Honeymoon Travelers &bull; USA</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="t-card reveal d2">
+                    <div class="t-q">“</div>
+                    <div class="stars">
+                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                    </div>
+                    <h5>Flawless Japan Itinerary</h5>
+                    <p>"The team crafted a 10-day Japan package for our family. Kenji our guide was outstanding. We got to experience authentic tea ceremonies and fast-track bullet train passes!"</p>
+                    <div class="t-author">
+                        <img src="assets/img/home4/testimonial-author-img2.png" alt="David Sterling">
+                        <div>
+                            <h6>David Sterling</h6>
+                            <span>Family Vacation &bull; UK</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="t-card reveal d3">
+                    <div class="t-q">“</div>
+                    <div class="stars">
+                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                    </div>
+                    <h5>Top Tier 24/7 Support</h5>
+                    <p>"When our flight got delayed in Athens, the Flyon Holidays concierge rebooked our ferry instantly without any hassle or extra fees. True peace of mind travel."</p>
+                    <div class="t-author">
+                        <img src="assets/img/home4/testimonial-author-img3.png" alt="Amara Vance">
+                        <div>
+                            <h6>Amara Vance</h6>
+                            <span>Solo Luxury Traveler &bull; Canada</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Travel Blog Section -->
+    <section class="sp blog-sec">
+        <div class="wrap">
+            <div class="sh-row">
+                <div>
+                    <div class="lbl">Travel Journal</div>
+                    <h2>Latest Insights & Travel Guides</h2>
+                </div>
+            </div>
+
+            <div class="blog-grid">
+                <div class="b-card reveal d1">
+                    <div class="b-img">
+                        <img src="assets/img/innerpages/blog-img1.jpg" alt="10 Hidden Gems in Switzerland">
+                        <span class="b-cat">Guide</span>
+                    </div>
+                    <div class="b-body">
+                        <div class="b-meta">
+                            <span><i class="bi bi-calendar-event"></i> Oct 12, 2026</span>
+                            <span><i class="bi bi-clock"></i> 5 min read</span>
+                        </div>
+                        <h4><a href="#">10 Hidden Alpine Villages In Switzerland You Must Visit</a></h4>
+                        <p>Discover secluded Swiss mountain valleys, crystalline lakes, and secret chalets away from tourist crowds.</p>
+                        <a href="#" class="b-more">Read Full Guide <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="b-card reveal d2">
+                    <div class="b-img">
+                        <img src="assets/img/innerpages/blog-img2.jpg" alt="Ultimate Bali Packing List">
+                        <span class="b-cat">Tips</span>
+                    </div>
+                    <div class="b-body">
+                        <div class="b-meta">
+                            <span><i class="bi bi-calendar-event"></i> Sep 28, 2026</span>
+                            <span><i class="bi bi-clock"></i> 4 min read</span>
+                        </div>
+                        <h4><a href="#">The Ultimate Luxury Traveler's Guide To Bali & Nusa Penida</a></h4>
+                        <p>Essential tips on luxury beachfront resorts, secret waterfalls, and ethical elephant sanctuaries.</p>
+                        <a href="#" class="b-more">Read Full Guide <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="b-card reveal d3">
+                    <div class="b-img">
+                        <img src="assets/img/innerpages/blog-img3.jpg" alt="Autumn in Kyoto Japan">
+                        <span class="b-cat">Culture</span>
+                    </div>
+                    <div class="b-body">
+                        <div class="b-meta">
+                            <span><i class="bi bi-calendar-event"></i> Sep 15, 2026</span>
+                            <span><i class="bi bi-clock"></i> 6 min read</span>
+                        </div>
+                        <h4><a href="#">Experiencing Kyoto's Magical Autumn Leaves & Ryokan Stays</a></h4>
+                        <p>A comprehensive itinerary for exploring Japan's ancient capital during peak foliage season.</p>
+                        <a href="#" class="b-more">Read Full Guide <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="sp-sm nl-sec">
+        <div class="wrap">
+            <div class="nl-grid">
+                <div>
+                    <div class="lbl">Stay Inspired</div>
+                    <h2>Get Exclusive Travel Deals & Secret Destinations</h2>
+                    <p style="color: var(--text-muted); margin-top: 8px;">Subscribe to Flyon Holidays newsletter to receive up to 25% off seasonal holiday packages.</p>
+                </div>
+                <form onsubmit="handleSubscribe(event)">
+                    <div class="nl-form">
+                        <input type="email" class="nl-input" placeholder="Enter your email address..." required id="nlEmail">
+                        <button type="submit" class="btn-p">Subscribe</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Site Footer -->
+    <footer class="site-ftr">
+        <div class="wrap">
+            <div class="ftr-grid">
+                <!-- Brand Info (UNCHANGED LOGO) -->
+                <div class="ftr-brand">
+                    <a href="index.html">
+                        <img src="assets/img/f-logo.png" alt="Flyon Holidays Logo" class="logo-img">
+                    </a>
+                    <p>Make Moments, Not Just Trips. Flyon Holidays offers premium, bespoke travel packages to over 120 global destinations.</p>
+                    <div class="ftr-soc">
+                        <a href="https://facebook.com" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="https://instagram.com" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="https://twitter.com" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+                        <a href="https://linkedin.com" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                        <a href="https://youtube.com" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="ftr-col">
+                    <h6>Quick Links</h6>
+                    <div class="ftr-links">
+                        <a href="index.html">Home</a>
+                        <a href="about.html">About Flyon Holidays</a>
+                        <a href="destinations.html">Popular Destinations</a>
+                        <a href="packages.html">Holiday Packages</a>
+                        <a href="contact.html">Contact Support</a>
+                    </div>
+                </div>
+
+                <!-- Destinations -->
+                <div class="ftr-col">
+                    <h6>Top Regions</h6>
+                    <div class="ftr-links">
+                        <a href="destinations.html">European Holidays</a>
+                        <a href="destinations.html">Asian Explorations</a>
+                        <a href="destinations.html">African Safaris</a>
+                        <a href="destinations.html">Tropical Island Escapes</a>
+                        <a href="destinations.html">American City Tours</a>
+                    </div>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="ftr-col">
+                    <h6>Contact Us</h6>
+                    <div class="ftr-ci">
+                        <div class="fi"><i class="bi bi-geo-alt-fill"></i></div>
+                        <div class="ft">
+                            <strong>Global Headquarters</strong>
+                            45 Park Lane, Mayfair, London W1K 1PN
+                        </div>
+                    </div>
+                    <div class="ftr-ci">
+                        <div class="fi"><i class="bi bi-envelope-fill"></i></div>
+                        <div class="ft">
+                            <strong>Email Inquiries</strong>
+                            contact@flyonholidays.com
+                        </div>
+                    </div>
+                    <div class="ftr-ci">
+                        <div class="fi"><i class="bi bi-telephone-fill"></i></div>
+                        <div class="ft">
+                            <strong>Toll-Free Booking</strong>
+                            +44 20 7946 0912
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="ftr-bot">
+                <p>&copy; 2026 Flyon Holidays. All Rights Reserved. Crafted for Extraordinary Experiences.</p>
+                <div class="ftr-bot-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">ATOL Protection</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back To Top Button -->
+    <button id="btt" onclick="scrollToTop()" aria-label="Back to Top"><i class="bi bi-arrow-up"></i></button>
+
+    <!-- Booking Modal -->
+    <div class="modal-booking" id="bookingModal">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeBookingModal()">&times;</button>
+            <div class="lbl" style="margin-bottom: 6px;">Flyon Holidays</div>
+            <h3 id="modalTitle" style="margin-bottom: 8px;">Book Your Trip</h3>
+            <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 24px;">Enter your travel preferences and our travel concierge will contact you within 15 minutes.</p>
+
+            <form onsubmit="handleModalSubmit(event)">
+                <div style="margin-bottom: 14px;">
+                    <label style="display: block; font-size: 0.75rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--primary); margin-bottom: 4px;">Full Name</label>
+                    <input type="text" required placeholder="John Doe" style="width: 100%; padding: 12px 16px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; color: #fff; outline: none;">
+                </div>
+                <div style="margin-bottom: 14px;">
+                    <label style="display: block; font-size: 0.75rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--primary); margin-bottom: 4px;">Email Address</label>
+                    <input type="email" required placeholder="john@example.com" style="width: 100%; padding: 12px 16px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; color: #fff; outline: none;">
+                </div>
+                <div style="margin-bottom: 14px;">
+                    <label style="display: block; font-size: 0.75rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--primary); margin-bottom: 4px;">Phone Number</label>
+                    <input type="tel" required placeholder="+1 (555) 000-0000" style="width: 100%; padding: 12px 16px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; color: #fff; outline: none;">
+                </div>
+                <div style="margin-bottom: 22px;">
+                    <label style="display: block; font-size: 0.75rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--primary); margin-bottom: 4px;">Preferred Travel Month</label>
+                    <select style="width: 100%; padding: 12px 16px; background: #0d1630; border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; color: #fff; outline: none;">
+                        <option>November 2026</option>
+                        <option>December 2026</option>
+                        <option>January 2027</option>
+                        <option>February 2027</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-p w-100 justify-content-center" style="padding: 14px;">Confirm Reservation Request</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div class="toast-msg" id="toastMsg">Notification Message</div>
+
+    <!-- JavaScript Interactions -->
+    <script>
+        // Page Loader
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            if (loader) {
+                loader.classList.add('hide');
+            }
+        });
+
+        // Custom Cursor
+        const cDot = document.querySelector('.c-dot');
+        const cRing = document.querySelector('.c-ring');
+        window.addEventListener('mousemove', (e) => {
+            if (cDot && cRing) {
+                cDot.style.left = e.clientX + 'px';
+                cDot.style.top = e.clientY + 'px';
+                cRing.style.left = e.clientX + 'px';
+                cRing.style.top = e.clientY + 'px';
+            }
+        });
+
+        // Header Scroll Sticky Effect
+        const header = document.getElementById('siteHeader');
+        const btt = document.getElementById('btt');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 80) {
+                header.classList.add('stuck');
+            } else {
+                header.classList.remove('stuck');
+            }
+            if (window.scrollY > 400) {
+                btt.classList.add('show');
+            } else {
+                btt.classList.remove('show');
+            }
+        });
+
+        // Mobile Nav Drawer Toggle
+        const mobMenuBtn = document.getElementById('mobMenuBtn');
+        const mobCloseBtn = document.getElementById('mobCloseBtn');
+        const mobOverlay = document.getElementById('mobOverlay');
+        const mobNav = document.getElementById('mobNav');
+
+        function toggleMobNav(open) {
+            if (open) {
+                mobNav.classList.add('open');
+                mobOverlay.classList.add('open');
+            } else {
+                mobNav.classList.remove('open');
+                mobOverlay.classList.remove('open');
+            }
+        }
+        if (mobMenuBtn) mobMenuBtn.addEventListener('click', () => toggleMobNav(true));
+        if (mobCloseBtn) mobCloseBtn.addEventListener('click', () => toggleMobNav(false));
+        if (mobOverlay) mobOverlay.addEventListener('click', () => toggleMobNav(false));
+
+        // Scroll to Top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Scroll Animations (Intersection Observer)
+        const revealElements = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('on');
+                }
+            });
+        }, { threshold: 0.1 });
+        revealElements.forEach(el => observer.observe(el));
+
+        // Booking Modal functions
+        function openBookingModal(packageName) {
+            const modal = document.getElementById('bookingModal');
+            const modalTitle = document.getElementById('modalTitle');
+            if (modalTitle && packageName) {
+                modalTitle.textContent = 'Book ' + packageName;
+            }
+            if (modal) modal.classList.add('active');
+        }
+        function closeBookingModal() {
+            const modal = document.getElementById('bookingModal');
+            if (modal) modal.classList.remove('active');
+        }
+
+        // Toast Messages
+        function showToast(msg) {
+            const toast = document.getElementById('toastMsg');
+            if (toast) {
+                toast.textContent = msg;
+                toast.classList.add('show');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 4000);
+            }
+        }
+
+        // Form Handlers
+        function handleSearch(e) {
+            e.preventDefault();
+            const dest = document.getElementById('searchDest').value || 'Selected Package';
+            openBookingModal(dest);
+        }
+        function handleModalSubmit(e) {
+            e.preventDefault();
+            closeBookingModal();
+            showToast('🎉 Reservation request submitted! Our travel designer will call you shortly.');
+        }
+        function handleSubscribe(e) {
+            e.preventDefault();
+            document.getElementById('nlEmail').value = '';
+            showToast('✨ Thank you for subscribing to Flyon Holidays!');
+        }
+    </script>
+</body>
+</html>

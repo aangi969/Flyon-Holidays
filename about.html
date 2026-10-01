@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Flyon Holidays</title>
+    <meta name="description" content="Learn about Flyon Holidays, our story, mission, global team, and dedication to crafting unforgettable luxury holidays.">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="assets/img/fav-icon.svg" type="image/svg+xml">
+    
+    <!-- CSS Dependencies -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/custom-style.css">
+    
+    <style>
+        .logo-img { max-height: 48px; width: auto; object-fit: contain; }
+        .inner-hero {
+            position: relative;
+            padding: 120px 0 60px;
+            background: linear-gradient(135deg, rgba(8, 14, 30, 0.92), rgba(13, 22, 48, 0.85)), url('assets/img/innerpages/breadcrumb-bg1.jpg') center/cover;
+            border-bottom: 1px solid var(--card-border);
+        }
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .val-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--card-border);
+            border-radius: var(--r-md);
+            padding: 24px 20px;
+            transition: var(--ease);
+        }
+        .val-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0, 201, 167, 0.15);
+        }
+        .val-icon {
+            width: 44px;
+            height: 44px;
+            background: rgba(0, 201, 167, 0.12);
+            border-radius: var(--r-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 14px;
+        }
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-top: 30px;
+        }
+        .tl-card {
+            background: var(--navy-2);
+            border: 1px solid var(--card-border);
+            border-radius: var(--r-md);
+            padding: 20px;
+            position: relative;
+        }
+        .tl-year {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+        .modal-booking { display: none; position: fixed; inset: 0; z-index: 99999; background: rgba(8, 14, 30, 0.85); backdrop-filter: blur(12px); align-items: center; justify-content: center; padding: 20px; }
+        .modal-booking.active { display: flex; }
+        .modal-card { background: #0d1630; border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 24px; padding: 36px; max-width: 540px; width: 100%; position: relative; }
+        .modal-close { position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.1); border: none; color: #fff; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+        .toast-msg { position: fixed; bottom: 30px; left: 30px; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #fff; padding: 14px 24px; border-radius: 12px; font-weight: 600; box-shadow: 0 10px 30px rgba(0, 201, 167, 0.3); z-index: 9999; transform: translateY(100px); opacity: 0; transition: all 0.4s ease; }
+        .toast-msg.show { transform: translateY(0); opacity: 1; }
+        @media(max-width: 992px) {
+            .values-grid, .timeline-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media(max-width: 576px) {
+            .values-grid, .timeline-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Page Loader -->
+    <div id="loader"><div class="ld-ring"></div><div class="ld-txt">Flyon Holidays</div></div>
+    <div class="c-dot"></div><div class="c-ring"></div>
+
+    <!-- Header -->
+    <header class="site-hdr" id="siteHeader">
+        <div class="wrap hdr-inner">
+            <a href="index.html" class="logo" title="Flyon Holidays">
+                <img src="assets/img/f-logo.png" alt="Flyon Holidays Logo" class="logo-img">
+            </a>
+            <nav class="nav-list">
+                <a href="index.html">Home</a>
+                <a href="about.html" class="active">About Us</a>
+                <a href="destinations.html">Destinations</a>
+                <a href="packages.html">Packages</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <div class="hdr-right">
+                <div class="hdr-phone">
+                    <div class="ph-icon"><i class="bi bi-telephone-fill"></i></div>
+                    <div>
+                        <small>24/7 Concierge</small>
+                        <strong>+44 20 7946 0912</strong>
+                    </div>
+                </div>
+                <button class="btn-p" onclick="openBookingModal('General Inquiry')"><i class="bi bi-calendar-check-fill"></i> Book A Trip</button>
+            </div>
+            <button class="hamburger" id="mobMenuBtn" aria-label="Toggle Menu"><span></span><span></span><span></span></button>
+        </div>
+    </header>
+
+    <div class="mob-overlay" id="mobOverlay"></div>
+    <aside class="mob-nav" id="mobNav">
+        <div class="mob-hdr">
+            <a href="index.html" class="logo"><img src="assets/img/f-logo.png" alt="Flyon Holidays Logo" class="logo-img"></a>
+            <button class="mob-close" id="mobCloseBtn"><i class="bi bi-x"></i></button>
+        </div>
+        <div class="mob-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="destinations.html">Destinations</a>
+            <a href="packages.html">Packages</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+    </aside>
+
+    <!-- Inner Hero -->
+    <section class="inner-hero">
+        <div class="wrap text-center">
+            <div class="lbl center">Our Story & Heritage</div>
+            <h1 style="margin-top: 10px;">About Flyon Holidays</h1>
+            <p style="color: var(--text-light); max-width: 650px; margin: 12px auto 0;">Crafting bespoke luxury travel experiences that inspire wonder, deepen connections, and create everlasting memories.</p>
+        </div>
+    </section>
+
+    <!-- Company Story Section -->
+    <section style="padding: 50px 0; background: var(--navy);">
+        <div class="wrap">
+            <div class="why-grid" style="gap: 36px;">
+                <div>
+                    <div class="lbl">15 Years of Excellence</div>
+                    <h2 style="font-size: 2.2rem; margin-bottom: 12px;">Redefining Bespoke Luxury Travel</h2>
+                    <p style="color: var(--text-light); line-height: 1.7; margin-bottom: 12px;">Headquartered in Mayfair, London, <strong>Flyon Holidays</strong> has evolved from an exclusive travel house into an internationally celebrated luxury travel agency catering to discerning travelers across 120+ destinations worldwide.</p>
+                    <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 20px;">We believe true luxury is not merely staying in 5-star resorts; it is the freedom from logistics, authentic cultural immersion, and 24/7 personal care every step of your journey.</p>
+
+                    <!-- Founder Quote Box -->
+                    <div style="padding: 18px 22px; background: rgba(255,255,255,0.04); border-left: 3px solid var(--primary); border-radius: var(--r-md); display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+                        <div>
+                            <p style="font-size: 0.88rem; color: var(--text-light); font-style: italic; margin-bottom: 4px;">"Every itinerary we design is a work of art tailored around your dreams."</p>
+                            <div style="font-size: 0.8rem; font-weight: 700; color: var(--primary);">Edward Montgomery &bull; Founder & CEO</div>
+                        </div>
+                        <img src="assets/img/innerpages/about-page-founder-signature.png" alt="Founder Signature" style="height: 32px; filter: brightness(0) invert(1); opacity: 0.85;">
+                    </div>
+                </div>
+
+                <div class="why-img-wrap">
+                    <div class="why-img" style="height: 400px;">
+                        <img src="assets/img/home4/home4-about-bg.png" alt="About Flyon Holidays">
+                    </div>
+                    <div class="why-fc1" style="bottom: -10px; right: -10px; padding: 12px 18px;">
+                        <div class="n" style="font-size: 1.8rem;">100%</div>
+                        <div class="t" style="font-size: 0.7rem;">ATOL Protected</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Values Section -->
+    <section style="padding: 50px 0; background: var(--navy-2); border-top: 1px solid var(--card-border); border-bottom: 1px solid var(--card-border);">
+        <div class="wrap">
+            <div class="text-center" style="margin-bottom: 10px;">
+                <div class="lbl center">Our Pillars</div>
+                <h2>What Sets Flyon Holidays Apart</h2>
+            </div>
+
+            <div class="values-grid">
+                <div class="val-card">
+                    <div class="val-icon"><i class="bi bi-award-fill"></i></div>
+                    <h5 style="font-size: 1rem; margin-bottom: 6px;">Bespoke Design</h5>
+                    <p style="font-size: 0.82rem; color: var(--text-muted); margin: 0;">100% tailor-made itineraries crafted around your specific interests, pace, and passions.</p>
+                </div>
+                <div class="val-card">
+                    <div class="val-icon"><i class="bi bi-shield-check"></i></div>
+                    <h5 style="font-size: 1rem; margin-bottom: 6px;">Financial Protection</h5>
+                    <p style="font-size: 0.82rem; color: var(--text-muted); margin: 0;">ATOL & IATA bonded financial protection ensures complete peace of mind on every booking.</p>
+                </div>
+                <div class="val-card">
+                    <div class="val-icon"><i class="bi bi-headset"></i></div>
+                    <h5 style="font-size: 1rem; margin-bottom: 6px;">24/7 VIP Concierge</h5>
+                    <p style="font-size: 0.82rem; color: var(--text-muted); margin: 0;">Direct access to your dedicated personal travel manager before, during, and after your trip.</p>
+                </div>
+                <div class="val-card">
+                    <div class="val-icon"><i class="bi bi-gem"></i></div>
+                    <h5 style="font-size: 1rem; margin-bottom: 6px;">Exclusive Perks</h5>
+                    <p style="font-size: 0.82rem; color: var(--text-muted); margin: 0;">Complimentary room upgrades, resort spa credits, and private airport transfers included.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Journey Timeline -->
+    <section style="padding: 50px 0; background: var(--navy);">
+        <div class="wrap">
+            <div class="text-center" style="margin-bottom: 10px;">
+                <div class="lbl center">Milestones</div>
+                <h2>Our 15-Year Growth Journey</h2>
+            </div>
+
+            <div class="timeline-grid">
+                <div class="tl-card">
+                    <div class="tl-year">2011</div>
+                    <h5 style="font-size: 0.95rem; margin-bottom: 4px;">Founded in Mayfair</h5>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0;">Started as a boutique London travel lounge designing private European holidays.</p>
+                </div>
+                <div class="tl-card">
+                    <div class="tl-year">2016</div>
+                    <h5 style="font-size: 0.95rem; margin-bottom: 4px;">Asian Expansion</h5>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0;">Expanded operations to Japan, Bali, & Thailand with handpicked local experts.</p>
+                </div>
+                <div class="tl-card">
+                    <div class="tl-year">2021</div>
+                    <h5 style="font-size: 0.95rem; margin-bottom: 4px;">24/7 Global Concierge</h5>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0;">Launched instant 24/7 on-trip concierge assistance for luxury travelers.</p>
+                </div>
+                <div class="tl-card">
+                    <div class="tl-year">2026</div>
+                    <h5 style="font-size: 0.95rem; margin-bottom: 4px;">120+ World Regions</h5>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0;">Celebrated serving 15,000+ happy clients across all 6 continents with 99% satisfaction.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="stats-sec">
+        <div class="wrap">
+            <div class="stats-grid">
+                <div class="s-item">
+                    <i class="bi bi-globe2"></i>
+                    <div class="sv">120<em>+</em></div>
+                    <div class="sl">Destinations</div>
+                </div>
+                <div class="s-item">
+                    <i class="bi bi-people-fill"></i>
+                    <div class="sv">15<em>K+</em></div>
+                    <div class="sl">Happy Clients</div>
+                </div>
+                <div class="s-item">
+                    <i class="bi bi-award-fill"></i>
+                    <div class="sv">35<em>+</em></div>
+                    <div class="sl">Awards Won</div>
+                </div>
+                <div class="s-item">
+                    <i class="bi bi-star-fill"></i>
+                    <div class="sv">4.9<em>/5</em></div>
+                    <div class="sl">Rating Score</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-ftr">
+        <div class="wrap">
+            <div class="ftr-grid">
+                <div class="ftr-brand">
+                    <a href="index.html"><img src="assets/img/f-logo.png" alt="Flyon Holidays Logo" class="logo-img"></a>
+                    <p>Make Moments, Not Just Trips. Flyon Holidays offers premium, bespoke travel packages worldwide.</p>
+                </div>
+                <div class="ftr-col">
+                    <h6>Quick Links</h6>
+                    <div class="ftr-links">
+                        <a href="index.html">Home</a>
+                        <a href="about.html">About Us</a>
+                        <a href="destinations.html">Destinations</a>
+                        <a href="packages.html">Packages</a>
+                        <a href="contact.html">Contact Us</a>
+                    </div>
+                </div>
+                <div class="ftr-col">
+                    <h6>Top Regions</h6>
+                    <div class="ftr-links">
+                        <a href="destinations.html">Europe</a>
+                        <a href="destinations.html">Asia</a>
+                        <a href="destinations.html">Africa</a>
+                        <a href="destinations.html">Americas</a>
+                    </div>
+                </div>
+                <div class="ftr-col">
+                    <h6>Contact Us</h6>
+                    <div class="ftr-ci"><div class="fi"><i class="bi bi-geo-alt-fill"></i></div><div class="ft">45 Park Lane, Mayfair, London W1K 1PN</div></div>
+                    <div class="ftr-ci"><div class="fi"><i class="bi bi-envelope-fill"></i></div><div class="ft">contact@flyonholidays.com</div></div>
+                    <div class="ftr-ci"><div class="fi"><i class="bi bi-telephone-fill"></i></div><div class="ft">+44 20 7946 0912</div></div>
+                </div>
+            </div>
+            <div class="ftr-bot">
+                <p>&copy; 2026 Flyon Holidays. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div class="modal-booking" id="bookingModal">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeBookingModal()">&times;</button>
+            <div class="lbl">Flyon Holidays</div>
+            <h3 id="modalTitle">Book Your Trip</h3>
+            <form onsubmit="handleModalSubmit(event)" style="margin-top: 20px;">
+                <div style="margin-bottom: 12px;"><input type="text" required placeholder="Full Name" style="width:100%; padding:12px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); border-radius:8px; color:#fff;"></div>
+                <div style="margin-bottom: 12px;"><input type="email" required placeholder="Email Address" style="width:100%; padding:12px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); border-radius:8px; color:#fff;"></div>
+                <div style="margin-bottom: 18px;"><input type="tel" required placeholder="Phone Number" style="width:100%; padding:12px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); border-radius:8px; color:#fff;"></div>
+                <button type="submit" class="btn-p w-100 justify-content-center">Submit Inquiry</button>
+            </form>
+        </div>
+    </div>
+    <div class="toast-msg" id="toastMsg">Notification</div>
+
+    <script>
+        window.addEventListener('load', () => document.getElementById('loader')?.classList.add('hide'));
+        const header = document.getElementById('siteHeader');
+        window.addEventListener('scroll', () => header?.classList.toggle('stuck', window.scrollY > 80));
+        const mobMenuBtn = document.getElementById('mobMenuBtn');
+        const mobCloseBtn = document.getElementById('mobCloseBtn');
+        const mobOverlay = document.getElementById('mobOverlay');
+        const mobNav = document.getElementById('mobNav');
+        function toggleMobNav(open) { mobNav?.classList.toggle('open', open); mobOverlay?.classList.toggle('open', open); }
+        mobMenuBtn?.addEventListener('click', () => toggleMobNav(true));
+        mobCloseBtn?.addEventListener('click', () => toggleMobNav(false));
+        mobOverlay?.addEventListener('click', () => toggleMobNav(false));
+
+        function openBookingModal(pkg) { if (pkg) document.getElementById('modalTitle').textContent = 'Book ' + pkg; document.getElementById('bookingModal').classList.add('active'); }
+        function closeBookingModal() { document.getElementById('bookingModal').classList.remove('active'); }
+        function handleModalSubmit(e) { e.preventDefault(); closeBookingModal(); const t = document.getElementById('toastMsg'); t.textContent = '🎉 Inquiry received! Our team will contact you shortly.'; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 4000); }
+    </script>
+</body>
+</html>

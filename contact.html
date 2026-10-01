@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Flyon Holidays</title>
+    <meta name="description" content="Contact Flyon Holidays for custom trip inquiries, luxury booking assistance, or 24/7 client support.">
+    <link rel="icon" href="assets/img/fav-icon.svg" type="image/svg+xml">
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/custom-style.css">
+    <style>
+        .logo-img { max-height: 48px; width: auto; object-fit: contain; }
+        .inner-hero {
+            position: relative;
+            padding: 140px 0 80px;
+            background: linear-gradient(135deg, rgba(8, 14, 30, 0.9), rgba(13, 22, 48, 0.8)), url('assets/img/innerpages/breadcrumb-bg5.jpg') center/cover;
+            border-bottom: 1px solid var(--card-border);
+        }
+        .contact-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--card-border);
+            border-radius: var(--r-lg);
+            padding: 40px;
+        }
+        .toast-msg { position: fixed; bottom: 30px; left: 30px; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #fff; padding: 14px 24px; border-radius: 12px; font-weight: 600; box-shadow: 0 10px 30px rgba(0, 201, 167, 0.3); z-index: 9999; transform: translateY(100px); opacity: 0; transition: all 0.4s ease; }
+        .toast-msg.show { transform: translateY(0); opacity: 1; }
+    </style>
+</head>
+<body>
+    <div id="loader"><div class="ld-ring"></div><div class="ld-txt">Flyon Holidays</div></div>
+    <div class="c-dot"></div><div class="c-ring"></div>
+
+    <!-- Header -->
+    <header class="site-hdr" id="siteHeader">
+        <div class="wrap hdr-inner">
+            <a href="index.html" class="logo" title="Flyon Holidays">
+                <img src="assets/img/f-logo.png" alt="Flyon Holidays Logo" class="logo-img">
+            </a>
+            <nav class="nav-list">
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="destinations.html">Destinations</a>
+                <a href="packages.html">Packages</a>
+                <a href="contact.html" class="active">Contact</a>
+            </nav>
+            <div class="hdr-right">
+                <div class="hdr-phone">
+                    <div class="ph-icon"><i class="bi bi-telephone-fill"></i></div>
+                    <div>
+                        <small>24/7 Concierge</small>
+                        <strong>+44 20 7946 0912</strong>
+                    </div>
+                </div>
+                <a href="#contactForm" class="btn-p"><i class="bi bi-chat-dots-fill"></i> Send Message</a>
+            </div>
+            <button class="hamburger" id="mobMenuBtn"><span></span><span></span><span></span></button>
+        </div>
+    </header>
+
+    <div class="mob-overlay" id="mobOverlay"></div>
+    <aside class="mob-nav" id="mobNav">
+        <div class="mob-hdr">
+            <a href="index.html" class="logo"><img src="assets/img/f-logo.png" alt="Flyon Holidays Logo" class="logo-img"></a>
+            <button class="mob-close" id="mobCloseBtn"><i class="bi bi-x"></i></button>
+        </div>
+        <div class="mob-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="destinations.html">Destinations</a>
+            <a href="packages.html">Packages</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+    </aside>
+
+    <!-- Inner Hero -->
+    <section class="inner-hero">
+        <div class="wrap text-center">
+            <div class="lbl center">Get In Touch</div>
+            <h1 style="margin-top: 10px;">Contact Flyon Holidays</h1>
+            <p style="color: var(--text-light); max-width: 600px; margin: 12px auto 0;">Have a question about a destination or want to craft a custom travel itinerary? Our travel concierges are ready 24/7.</p>
+        </div>
+    </section>
+
+    <!-- Contact Content Section -->
+    <section class="sp dest-sec" id="contactForm">
+        <div class="wrap">
+            <div class="row g-5">
+                <div class="col-lg-5">
+                    <div class="lbl">Reach Our Team</div>
+                    <h2>Let's Plan Your Dream Holiday</h2>
+                    <p style="color: var(--text-light); margin-top: 14px;">Contact our travel experts via phone, email, or visit our head office in Los Angeles.</p>
+
+                    <div style="margin-top: 32px; display: flex; flex-direction: column; gap: 20px;">
+                        <div class="ftr-ci">
+                            <div class="fi" style="font-size: 1.4rem; color: var(--primary);"><i class="bi bi-geo-alt-fill"></i></div>
+                            <div>
+                                <strong style="color: #fff; font-size: 1rem;">Headquarters Location</strong>
+                                <span style="color: var(--text-muted); font-size: 0.9rem;">45 Park Lane, Mayfair, London W1K 1PN</span>
+                            </div>
+                        </div>
+
+                        <div class="ftr-ci">
+                            <div class="fi" style="font-size: 1.4rem; color: var(--primary);"><i class="bi bi-envelope-fill"></i></div>
+                            <div>
+                                <strong style="color: #fff; font-size: 1rem;">Direct Email</strong>
+                                <span style="color: var(--text-muted); font-size: 0.9rem;">contact@flyonholidays.com</span>
+                            </div>
+                        </div>
+
+                        <div class="ftr-ci">
+                            <div class="fi" style="font-size: 1.4rem; color: var(--primary);"><i class="bi bi-telephone-fill"></i></div>
+                            <div>
+                                <strong style="color: #fff; font-size: 1rem;">24/7 Concierge Hotline</strong>
+                                <span style="color: var(--text-muted); font-size: 0.9rem;">+44 20 7946 0912</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-7">
+                    <div class="contact-card">
+                        <h3>Send Us A Message</h3>
+                        <form onsubmit="handleFormSubmit(event)" style="margin-top: 24px;">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label style="display:block; font-size: 0.75rem; text-transform: uppercase; color: var(--primary); letter-spacing: 1.5px; margin-bottom: 6px;">Your Name</label>
+                                    <input type="text" required placeholder="John Doe" style="width: 100%; padding: 12px 16px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; color: #fff; outline: none;">
+                                </div>
+                                <div class="col-md-6">
+                                    <label style="display:block; font-size: 0.75rem; text-transform: uppercase; color: var(--primary); letter-spacing: 1.5px; margin-bottom: 6px;">Your Email</label>
+                                    <input type="email" required placeholder="john@example.com" style="width: 100%; padding: 12px 16px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; color: #fff; outline: none;">
+                                </div>
+                                <div class="col-md-6">
+                                    <label style="display:block; font-size: 0.75rem; text-transform: uppercase; color: var(--primary); letter-spacing: 1.5px; margin-bottom: 6px;">Phone Number</label>
+                                    <input type="tel" placeholder="+1 (555) 000-0000" style="width: 100%; padding: 12px 16px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; color: #fff; outline: none;">
+                                </div>
+                                <div class="col-md-6">
+                                    <label style="display:block; font-size: 0.75rem; text-transform: uppercase; color: var(--primary); letter-spacing: 1.5px; margin-bottom: 6px;">Interested Region</label>
+                                    <select style="width: 100%; padding: 12px 16px; background: #0d1630; border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; color: #fff; outline: none;">
+                                        <option>Europe</option>
+                                        <option>Asia</option>
+                                        <option>Africa</option>
+                                        <option>Americas</option>
+                                        <option>Other / Custom</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label style="display:block; font-size: 0.75rem; text-transform: uppercase; color: var(--primary); letter-spacing: 1.5px; margin-bottom: 6px;">Your Message or Travel Wishlist</label>
+                                    <textarea rows="4" required placeholder="Tell us where you want to go, dates, number of travelers..." style="width: 100%; padding: 12px 16px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; color: #fff; outline: none;"></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn-p w-100 justify-content-center" style="padding: 14px;">Send Message</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-ftr">
+        <div class="wrap">
+            <div class="ftr-grid">
+                <div class="ftr-brand">
+                    <a href="index.html"><img src="assets/img/f-logo.png" alt="Flyon Holidays Logo" class="logo-img"></a>
+                    <p>Make Moments, Not Just Trips. Flyon Holidays offers premium travel packages worldwide.</p>
+                </div>
+                <div class="ftr-col">
+                    <h6>Quick Links</h6>
+                    <div class="ftr-links">
+                        <a href="index.html">Home</a>
+                        <a href="about.html">About Us</a>
+                        <a href="destinations.html">Destinations</a>
+                        <a href="packages.html">Packages</a>
+                        <a href="contact.html">Contact Us</a>
+                    </div>
+                </div>
+                <div class="ftr-col">
+                    <h6>Destinations</h6>
+                    <div class="ftr-links">
+                        <a href="destinations.html">France</a>
+                        <a href="destinations.html">Japan</a>
+                        <a href="destinations.html">Greece</a>
+                        <a href="destinations.html">Switzerland</a>
+                    </div>
+                </div>
+                <div class="ftr-col">
+                    <h6>Contact Us</h6>
+                    <div class="ftr-ci"><div class="fi"><i class="bi bi-geo-alt-fill"></i></div><div class="ft">45 Park Lane, Mayfair, London W1K 1PN</div></div>
+                    <div class="ftr-ci"><div class="fi"><i class="bi bi-envelope-fill"></i></div><div class="ft">contact@flyonholidays.com</div></div>
+                    <div class="ftr-ci"><div class="fi"><i class="bi bi-telephone-fill"></i></div><div class="ft">+44 20 7946 0912</div></div>
+                </div>
+            </div>
+            <div class="ftr-bot">
+                <p>&copy; 2026 Flyon Holidays. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="toast-msg" id="toastMsg">Notification</div>
+
+    <script>
+        window.addEventListener('load', () => document.getElementById('loader')?.classList.add('hide'));
+        const header = document.getElementById('siteHeader');
+        window.addEventListener('scroll', () => header?.classList.toggle('stuck', window.scrollY > 80));
+        const mobMenuBtn = document.getElementById('mobMenuBtn');
+        const mobCloseBtn = document.getElementById('mobCloseBtn');
+        const mobOverlay = document.getElementById('mobOverlay');
+        const mobNav = document.getElementById('mobNav');
+        function toggleMobNav(open) { mobNav?.classList.toggle('open', open); mobOverlay?.classList.toggle('open', open); }
+        mobMenuBtn?.addEventListener('click', () => toggleMobNav(true));
+        mobCloseBtn?.addEventListener('click', () => toggleMobNav(false));
+        mobOverlay?.addEventListener('click', () => toggleMobNav(false));
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const t = document.getElementById('toastMsg');
+            t.textContent = '🎉 Message sent successfully! Our concierge will email you within 15 minutes.';
+            t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 4000);
+            e.target.reset();
+        }
+    </script>
+</body>
+</html>
